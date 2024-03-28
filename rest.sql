@@ -90,3 +90,12 @@ SELECT
     LEAD(price) OVER (ORDER BY price) - price AS price_diff_next
 FROM 
     menu_items;
+
+#make a CTE to count prices over 15
+WITH PriceAbove15 AS (
+    SELECT item_name, price
+    FROM menu_items
+    WHERE price > 15
+)
+SELECT COUNT(*) AS item_count
+FROM PriceAbove15;
